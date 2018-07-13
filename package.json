@@ -1,0 +1,19 @@
+{
+  "name": "tinyurl-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "expressServer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xuanvi26/tinyURL-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xuanvi26/tinyURL-generator/issues"
+  },
+  "homepage": "https://github.com/xuanvi26/tinyURL-generator#readme"
+}
