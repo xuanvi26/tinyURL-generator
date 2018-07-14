@@ -50,6 +50,11 @@ app.get("/login", (req, res) => {
 
 // REGISTER
 app.get("/register", (req, res) => {
+    const templateVars = {
+        sentence: "If you do not have an account, please register. If you are already registered, ",
+        redirect: "login",
+        page: "register"
+    }
     res.render("welcome", templateVars);
 })
 
