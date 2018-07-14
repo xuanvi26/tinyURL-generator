@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 
-<html lang = "en">
-    <body>
-        <form method="POST" action=<%="/register" %>>
-            <input type="email" name="email" placeholder="Your email" style="width: 300px">
-            <input type="password" name="password" placeholder="Your password" style="width: 300px">
-            <input type="submit" value="Register">
-        </form>
-    </body>
+<html>
+    <h1>Hello.</h1>
+    <h2>Welcome to TinyURL Generator,</h2>
+    <p>
+        where you can shorten those unwanted long URLs as well as edit,<br/>
+        manage and share your newly generated short URLs. Simply enter<br/>
+        a URL and at the touch of a button, – literally - create a tiny URL<br/>
+        that will never expire! You can also view the list of URLs by clicking<br/>
+        the link at the bottom right of this page.
+    </p>
+    <br/>
+    <div>
+        <%= sentence %>
+        <a href= <%= "/" + page %>><%= page + " here." %></a>
+    </div>
 </html>
