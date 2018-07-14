@@ -42,14 +42,15 @@ app.get("/", (req, res) => {
 app.get("/login", (req, res) => {
     const templateVars = {
         sentence: "Before using TinyURL, please sign-in. If you do not have an account, ",
-        page: "register"
+        redirect: "register",
+        page: "login"
     }
     res.render("welcome", templateVars);
 })
 
 // REGISTER
 app.get("/register", (req, res) => {
-    res.sendStatus(200);
+    res.render("welcome", templateVars);
 })
 
 // VIEW ALL URLS
