@@ -8,8 +8,11 @@ app.use(cookieParser());
 app.set("view engine", "ejs");
 
 const URLDatabase = {
-    userRandomID: {
+    userRandomID1: {
         Ex4mp3: "www.google.com"
+    },
+    userRandomID2: {
+        sup233: "www.lighthouse.com"
     }
 };
 const users = {
@@ -60,7 +63,12 @@ app.get("/register", (req, res) => {
 
 // VIEW ALL URLS
 app.get("/viewURLs", (req, res) => {
-    redirectLogin(req, res);
+    let allURLs = {}
+    for (let user in URLDatabase) {
+        for (let url in URLDatabase[user]) {
+            allURLs[url] = URLDatabase[user][url];
+        }
+    }
 })
 
 // LOGOUT
