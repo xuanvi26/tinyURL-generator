@@ -29,8 +29,8 @@ const generateRandomString = () => {
     return uniqueSURL;
 }
 
-const redirectLogin = (res) => {
-    if (!res.cookie["user_id"]) res.redirect('/login');
+const redirectLogin = (req, res) => {
+    if (!req.cookies["user_id"]) res.redirect('/login');
 }
 
 // DEFAULT
@@ -40,17 +40,16 @@ app.get("/", (req, res) => {
 
 //LOGIN
 app.get("/login", (req, res) => {
-    res.sendStatus(200);
 })
 
 // REGISTER
 app.get("/register", (req, res) => {
-    redirectLogin(res);
+    redirectLogin(req, res);
 })
 
 // VIEW ALL URLS
 app.get("/viewURLs", (req, res) => {
-    redirectLogin(res);
+    redirectLogin(req, res);
 })
 
 // LOGOUT
