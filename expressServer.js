@@ -7,8 +7,18 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.set("view engine", "ejs");
 
-const URLDatabase = {};
-const users = {};
+const URLDatabase = {
+    userRandomID: {
+        Ex4mp3: "www.google.com"
+    }
+};
+const users = {
+    userRandomID: {
+        id: "userRandomID", 
+        email: "user@example.com", 
+        password: "purple-monkey-dinosaur"
+      }
+};
 
 const generateRandomString = () => {
     let uniqueSURL = "";
@@ -19,6 +29,34 @@ const generateRandomString = () => {
     return uniqueSURL;
 }
 
+const redirectLogin = () => {
+    if (!res.cookie["user_id"]) res.redirect('/login');
+}
 
+// DEFAULT
+app.get("/", (req, res) => {
+    res.redirect('/login')
+})
 
+//LOGIN
+app.get("/login", (req, res) => {
+})
 
+// REGISTER
+app.get("/register", (req, res) => {
+})
+
+// VIEW ALL URLS
+app.get("/viewURLs", (req, res) => {
+})
+
+// LOGOUT
+app.post("logout", (req, res) => {
+    res.clearCookie("user_id");
+    res.redirect("/login");
+})
+
+app.listen(PORT, () => {
+    console.log(`TinyURL Generator listening on port ${PORT}!`);
+});
+  
