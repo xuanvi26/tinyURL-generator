@@ -4,18 +4,22 @@
 <head>
     <%- include ./partials/_header.ejs %>
 </head>
-<table style="width: 80%">
-    <tr>
-        <th>Long URL</th>
-        <th>Short URL</th>
-    </tr>
+<body>
+    <table style="width: 80%">
+        <tr>
+            <th>Long URL</th>
+            <th>Short URL</th>
+        </tr>
         <% for(let longURL in urls) { %>
             <tr>
                 <td><%= longURL %></td>
                 <td><%= urls[longURL] %>
-                <a href=
+                    <form method="POST" action=<%= "/" + user_id + "/urls/delete" %>
+                        <input type="submit" value="Delete">
+                    </form>
                 </td>
             </tr>
-        <% } %>
-</table>
+            <% } %>
+        </table>
+</body>
 </html>

@@ -113,7 +113,7 @@ app.get("/viewURLs", (req, res) => {
             allURLs[url] = URLDatabase[user][url];
         }
     }
-    res.render("viewURLs", {urls: allURLs, user_id: req.cookies});
+    res.render("viewURLs", {urls: allURLs, user_id: req.cookies["user_id"]});
 })
 
 // LOGOUT --> COMPLETE
