@@ -9,10 +9,10 @@ app.set("view engine", "ejs");
 
 const URLDatabase = {
     userRandomID1: {
-        "www.google.com": "Ex4mp3"
+        Ex4mp3: "www.google.com"
     },
     userRandomID2: {
-        "www.lighthouse.com": "sup233"
+        sup233: "www.lighthouse.com"
     }
 };
 const users = {
@@ -91,9 +91,17 @@ app.post("/register", (req, res) => {
     res.redirect("/viewURLs");
 })
 
-// NEW URL
+// NEW URL --> COMPLETE
 app.get("/:user/new", (req, res) => {
-    res.render("newURL", {user_id: req.cookies});
+    redirectLogin(req, res);
+    res.render("newURL", {user_id: req.cookies["user_id"]});
+})
+
+// POST TO MAKE NEW URL
+app.post("/:user/new", (req, res) => {
+    URLDatabase[req.params.user][generateRandomString()] = longURL;
+    console.log(URLDatabase);
+    res.redirect(`/${req.params.user}/urls`);
 })
 
 // USER URLs

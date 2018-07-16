@@ -7,13 +7,13 @@
 <body>
     <table style="width: 80%">
         <tr>
-            <th>Long URL</th>
             <th>Short URL</th>
+            <th>Long URL</th>
         </tr>
-        <% for(let longURL in urls) { %>
+        <% for(let shortURL in urls) { %>
             <tr>
-                <td><%= longURL %></td>
-                <td><%= urls[longURL] %>
+                <td><%= shortURL %></td>
+                <td><%= urls[shortURL] %>
                     <form method="POST" action=<%= "/" + user_id + "/urls/delete" %>
                         <input type="submit" value="Delete">
                     </form>
