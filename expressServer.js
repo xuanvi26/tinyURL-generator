@@ -9,10 +9,10 @@ app.set("view engine", "ejs");
 
 const URLDatabase = {
     userRandomID1: {
-        Ex4mp3: "www.google.com"
+        "www.google.com": "Ex4mp3"
     },
     userRandomID2: {
-        sup233: "www.lighthouse.com"
+        "www.lighthouse.com": "sup233"
     }
 };
 const users = {
@@ -69,6 +69,8 @@ app.get("/viewURLs", (req, res) => {
             allURLs[url] = URLDatabase[user][url];
         }
     }
+    console.log(allURLs);
+    res.render("viewURLs", {urls: allURLs});
 })
 
 // LOGOUT
