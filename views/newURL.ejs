@@ -6,7 +6,7 @@
 </head>
 <body>
     <%- include ./partials/_topbar.ejs %>
-    <form action=<%= "/" + user_id + "/urls"%> method="POST">
+    <form action=<%= "/" + user_id + "/new"%> method="POST">
       <label>Enter a URL:</label>
       <input type="text" name="longURL" placeholder="http://" style="width: 300px">
       <input type="submit" value="Generate shortURL">

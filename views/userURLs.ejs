@@ -5,17 +5,19 @@
     <%- include ./partials/_header.ejs %>
 </head>
 <body>
+    <%- include ./partials/_topbar.ejs %>
+    Generate a new short URL <a href=<%= "/" + user_id + "/new" %>>here</a>.
     <table style="width: 80%">
         <tr>
-            <th>Short URL</th>
-            <th>Long URL</th>
+            <th style="width:40%">Short URL</th>
+            <th style="width:40%">Long URL</th>
         </tr>
         <% for(let shortURL in urls) { %>
             <tr>
                 <td><%= shortURL %></td>
-                <td><%= urls[shortURL] %>
-                    <form method="POST" action=<%= "/" + user_id + "/urls/delete" %>
-                        <input type="submit" value="Delete">
+                <td style='display: flex;'><%= urls[shortURL] %>
+                    <form style='margin-left: 10px' method="POST" action=<%= "/" + user_id + "/urls/" + shortURL + "/delete" %>>
+                        <button type="submit" value="Delete"><i class="fas fa-trash-alt"></i></button>
                     </form>
                 </td>
             </tr>

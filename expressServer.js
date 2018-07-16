@@ -36,6 +36,10 @@ const redirectLogin = (req, res) => {
     if (!req.cookies["user_id"]) res.redirect('/login');
 }
 
+const redirectUser = (req, res) => {
+    if (req.cookies["user_id"]) res.redirect(`/${req.cookies["user_id"]}/urls}`);
+}
+
 // DEFAULT --> COMPLETE
 app.get("/", (req, res) => {
     res.redirect('/login')
@@ -43,6 +47,7 @@ app.get("/", (req, res) => {
 
 //LOGIN --> COMPLETE
 app.get("/login", (req, res) => {
+    redirectUser(req, res);
     const templateVars = {
         sentence: "Before using TinyURL, please sign-in. If you do not have an account, ",
         redirect: "register",
@@ -60,7 +65,7 @@ app.post("/login", (req, res) => {
             if (users[userId].password === req.body.password) {
                 authorizedUser = users[userId];
                 resParams.status = 200;
-                resParams.redirect = "/viewURLs";
+                resParams.redirect = `/${userId}/urls`;
             }
             break;
         }
@@ -70,6 +75,7 @@ app.post("/login", (req, res) => {
 
 // REGISTER --> COMPLETE
 app.get("/register", (req, res) => {
+    redirectUser(req, res);
     const templateVars = {
         sentence: "If you do not have an account, please register. If you are already registered, ",
         redirect: "login",
@@ -86,9 +92,10 @@ app.post("/register", (req, res) => {
         email: req.body.email,
         password: req.body.password
     }
+    URLDatabase[newUserId] = {};
     res.cookie("user_id", newUserId);
     // res.redirect("/" + newUserId + "/urls");
-    res.redirect("/viewURLs");
+    res.redirect(`/${newUserId}/new`);
 })
 
 // NEW URL --> COMPLETE
@@ -99,19 +106,23 @@ app.get("/:user/new", (req, res) => {
 
 // POST TO MAKE NEW URL
 app.post("/:user/new", (req, res) => {
-    URLDatabase[req.params.user][generateRandomString()] = longURL;
+    URLDatabase[req.params.user][generateRandomString()] = req.body.longURL;
     console.log(URLDatabase);
     res.redirect(`/${req.params.user}/urls`);
 })
 
-// USER URLs
+// USER URLs --> COMPLETE
 app.get("/:user/urls", (req, res) => {
-    redirectLogin();
-    let userURLs = URLDatabase[req.params.id];
-    res.render("userURLs", {urls: userURLs, user_id: req.cookies})
+    redirectLogin(req, res);
+    let userURLs = URLDatabase[req.params.user];
+    res.render("userURLs", {urls: userURLs, user_id: req.cookies["user_id"]})
 })
 
 // POSTING TO EDIT/DELETE URL
+app.post("/:user/urls/:shortURL/delete", (req, res) => {
+    delete URLDatabase[req.params.user][req.params.shortURL];
+    res.redirect(`/${req.params.user}/urls`);
+})
 
 // VIEW ALL URLS --> COMPLETE
 app.get("/viewURLs", (req, res) => {

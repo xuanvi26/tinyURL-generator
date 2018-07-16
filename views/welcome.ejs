@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 
 <html lang="en">
+<head> 
+    <%- include ./partials/_header.ejs %>
+</head>
+<body>
     <h1>Hello.</h1>
     <h2>Welcome to TinyURL Generator,</h2>
     <p>
@@ -22,4 +26,5 @@
         <input type="password" name="password" placeholder="Your password" style="width: 250px"/>
         <input type="submit" value=<%= page %> />
     </form>
+</body>
 </html>
