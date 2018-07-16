@@ -41,7 +41,7 @@ app.get("/", (req, res) => {
     res.redirect('/login')
 })
 
-//LOGIN
+//LOGIN --> COMPLETE
 app.get("/login", (req, res) => {
     const templateVars = {
         sentence: "Before using TinyURL, please sign-in. If you do not have an account, ",
@@ -49,6 +49,23 @@ app.get("/login", (req, res) => {
         page: "login"
     }
     res.render("welcome", templateVars);
+})
+
+// POSTING TO LOGIN --> COMPLETE
+app.post("/login", (req, res) => {
+    let authorizedUser = {};
+    let resParams = { status: 403, redirect: '/login'};
+    for (let userId in users) {
+        if (users[userId].email === req.body.email) {
+            if (users[userId].password === req.body.password) {
+                authorizedUser = users[userId];
+                resParams.status = 200;
+                resParams.redirect = "/viewURLs";
+            }
+            break;
+        }
+    }
+    res.cookie("user_id", authorizedUser.id).status(resParams.status).redirect(resParams.redirect); 
 })
 
 // REGISTER --> COMPLETE
@@ -70,29 +87,33 @@ app.post("/register", (req, res) => {
         password: req.body.password
     }
     res.cookie("user_id", newUserId);
-    console.log(users);
+    // res.redirect("/" + newUserId + "/urls");
     res.redirect("/viewURLs");
 })
 
-// NEW URL GENERATION 
-app.get("/:u/new", (req, res) => {
-
+// NEW URL
+app.get("/:user/new", (req, res) => {
+    res.render("newURL", {user_id: req.cookies});
 })
 
 // USER URLs
 app.get("/:user/urls", (req, res) => {
-
+    redirectLogin();
+    let userURLs = URLDatabase[req.params.id];
+    res.render("userURLs", {urls: userURLs, user_id: req.cookies})
 })
+
+// POSTING TO EDIT/DELETE URL
 
 // VIEW ALL URLS --> COMPLETE
 app.get("/viewURLs", (req, res) => {
-    let allURLs = {}
+    let allURLs = {};
     for (let user in URLDatabase) {
         for (let url in URLDatabase[user]) {
             allURLs[url] = URLDatabase[user][url];
         }
     }
-    res.render("viewURLs", {urls: allURLs, user_id: req.cookie});
+    res.render("viewURLs", {urls: allURLs, user_id: req.cookies});
 })
 
 // LOGOUT --> COMPLETE

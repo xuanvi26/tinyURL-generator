@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head> 
+    <%- include ./partials/_header.ejs %>
+</head>
+<body>
+    <form action=<%= "/" + user_id + "/urls"%> method="POST">
+      <label for="longURL">Enter a URL:</label>
+      <input type="text" name="longURL" placeholder="http://" style="width: 300px">
+      <input type="submit" value="Generate shortURL">
+    </form>
+</body>
+</html>

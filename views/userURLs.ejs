@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en">
-<head> 
+<head>
     <%- include ./partials/_header.ejs %>
 </head>
 <table style="width: 80%">
@@ -12,7 +12,9 @@
         <% for(let longURL in urls) { %>
             <tr>
                 <td><%= longURL %></td>
-                <td><%= urls[longURL] %></td>
+                <td><%= urls[longURL] %>
+                <a href=
+                </td>
             </tr>
         <% } %>
 </table>
