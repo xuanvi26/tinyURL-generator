@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 
 <html lang="en">
-    <table style="width: 80%">
-        <tr>
-            <th>Long URL</th>
-            <th>Short URL</th>
-        </tr>
-            <% for(let longURL in urls) { %>
-                <tr>
-                    <td><%= longURL %></td>
-                    <td><%= urls[longURL] %></td>
-                </tr>
-            <% } %>
-    </table>
+<head>
+    <%- include ./partials/_header.ejs %>
+</head>
+<table style="width: 80%">
+    <tr>
+        <th>Long URL</th>
+        <th>Short URL</th>
+    </tr>
+        <% for(let longURL in urls) { %>
+            <tr>
+                <td><%= longURL %></td>
+                <td><%= urls[longURL] %></td>
+            </tr>
+        <% } %>
+</table>
 </html>

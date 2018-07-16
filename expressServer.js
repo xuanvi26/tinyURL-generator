@@ -36,7 +36,7 @@ const redirectLogin = (req, res) => {
     if (!req.cookies["user_id"]) res.redirect('/login');
 }
 
-// DEFAULT
+// DEFAULT --> COMPLETE
 app.get("/", (req, res) => {
     res.redirect('/login')
 })
@@ -51,7 +51,7 @@ app.get("/login", (req, res) => {
     res.render("welcome", templateVars);
 })
 
-// REGISTER
+// REGISTER --> COMPLETE
 app.get("/register", (req, res) => {
     const templateVars = {
         sentence: "If you do not have an account, please register. If you are already registered, ",
@@ -61,7 +61,30 @@ app.get("/register", (req, res) => {
     res.render("welcome", templateVars);
 })
 
-// VIEW ALL URLS
+// POSTING TO REGISTER
+app.post("/register", (req, res) => {
+    let newUserId = generateRandomString();
+    users[newUserId] = {
+        id: newUserId,
+        email: req.body.email,
+        password: req.body.password
+    }
+    res.cookie("user_id", newUserId);
+    console.log(users);
+    res.redirect("/viewURLs");
+})
+
+// NEW URL GENERATION 
+app.get("/:u/new", (req, res) => {
+
+})
+
+// USER URLs
+app.get("/:user/urls", (req, res) => {
+
+})
+
+// VIEW ALL URLS --> COMPLETE
 app.get("/viewURLs", (req, res) => {
     let allURLs = {}
     for (let user in URLDatabase) {
@@ -69,12 +92,11 @@ app.get("/viewURLs", (req, res) => {
             allURLs[url] = URLDatabase[user][url];
         }
     }
-    console.log(allURLs);
-    res.render("viewURLs", {urls: allURLs});
+    res.render("viewURLs", {urls: allURLs, user_id: req.cookie});
 })
 
-// LOGOUT
-app.post("logout", (req, res) => {
+// LOGOUT --> COMPLETE
+app.post("/logout", (req, res) => {
     res.clearCookie("user_id");
     res.redirect("/login");
 })
