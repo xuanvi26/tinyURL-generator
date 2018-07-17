@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 const PORT = 8080; 
 const bodyParser = require("body-parser");
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
+const bcrypt = require("bcrypt");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.set("view engine", "ejs");
@@ -36,16 +37,11 @@ const redirectLogin = (req, res) => {
     if (!req.cookies["user_id"]) res.redirect('/login');
 }
 
-const redirectUser = (req, res) => {
-    if (req.cookies["user_id"]) res.redirect(`/${req.cookies["user_id"]}/urls}`);
-}
-
 app.get("/", (req, res) => {
     res.redirect('/login')
 })
 
 app.get("/login", (req, res) => {
-    redirectUser(req, res);
     const templateVars = {
         sentence: "Before using TinyURL, please sign-in. If you do not have an account, ",
         redirect: "register",
@@ -59,7 +55,7 @@ app.post("/login", (req, res) => {
     let resParams = { status: 403, redirect: '/login'};
     for (let userId in users) {
         if (users[userId].email === req.body.email) {
-            if (users[userId].password === req.body.password) {
+            if (bcrypt.compareSync(req.body.password, users[userId].hashedPassword)) {
                 authorizedUser = users[userId];
                 resParams.status = 200;
                 resParams.redirect = `/${userId}/urls`;
@@ -71,7 +67,6 @@ app.post("/login", (req, res) => {
 })
 
 app.get("/register", (req, res) => {
-    redirectUser(req, res);
     const templateVars = {
         sentence: "If you do not have an account, please register. If you are already registered, ",
         redirect: "login",
@@ -90,7 +85,7 @@ app.post("/register", (req, res) => {
     users[newUserId] = {
         id: newUserId,
         email: req.body.email,
-        password: req.body.password
+        hashedPassword: bcrypt.hashSync(req.body.password, 10)
     }
     URLDatabase[newUserId] = {};
     res.cookie("user_id", newUserId);
