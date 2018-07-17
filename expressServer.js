@@ -86,6 +86,11 @@ app.get("/register", (req, res) => {
 
 // POSTING TO REGISTER
 app.post("/register", (req, res) => {
+    for (let userId in users) {
+        if (users[userId].email === req.body.email) {
+            res.status(403).redirect("/register");
+        }
+    }
     let newUserId = generateRandomString();
     users[newUserId] = {
         id: newUserId,
@@ -94,7 +99,6 @@ app.post("/register", (req, res) => {
     }
     URLDatabase[newUserId] = {};
     res.cookie("user_id", newUserId);
-    // res.redirect("/" + newUserId + "/urls");
     res.redirect(`/${newUserId}/new`);
 })
 
