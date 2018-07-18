@@ -2,10 +2,13 @@ const express = require("express");
 const app = express();
 const PORT = 8080; 
 const bodyParser = require("body-parser");
-const cookieParser = require('cookie-parser');
+const cookieSession = require('cookie-session');
 const bcrypt = require("bcrypt");
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(cookieParser());
+app.use(cookieSession({
+    name: "session",
+    keys: [10]
+}));
 app.set("view engine", "ejs");
 
 const URLDatabase = {
@@ -34,7 +37,7 @@ const generateRandomString = () => {
 }
 
 const redirectLogin = (req, res) => {
-    if (!req.cookies["user_id"]) res.redirect('/login');
+    if (!req.session.user_id) res.redirect('/login');
 }
 
 app.get("/", (req, res) => {
@@ -63,7 +66,8 @@ app.post("/login", (req, res) => {
             break;
         }
     }
-    res.cookie("user_id", authorizedUser.id).status(resParams.status).redirect(resParams.redirect); 
+    req.session.user_id = authorizedUser.id;
+    res.status(resParams.status).redirect(resParams.redirect); 
 })
 
 app.get("/register", (req, res) => {
@@ -88,13 +92,13 @@ app.post("/register", (req, res) => {
         hashedPassword: bcrypt.hashSync(req.body.password, 10)
     }
     URLDatabase[newUserId] = {};
-    res.cookie("user_id", newUserId);
+    req.session.user_id = newUserId;
     res.redirect(`/${newUserId}/new`);
 })
 
 app.get("/:user/new", (req, res) => {
     redirectLogin(req, res);
-    res.render("newURL", {user_id: req.cookies["user_id"]});
+    res.render("newURL", {user_id: req.session.user_id});
 })
 
 app.post("/:user/new", (req, res) => {
@@ -105,7 +109,7 @@ app.post("/:user/new", (req, res) => {
 app.get("/:user/urls", (req, res) => {
     redirectLogin(req, res);
     let userURLs = URLDatabase[req.params.user];
-    res.render("userURLs", {urls: userURLs, user_id: req.cookies["user_id"]})
+    res.render("userURLs", {urls: userURLs, user_id: req.session.user_id})
 })
 
 app.post("/:user/urls/:shortURL/delete", (req, res) => {
@@ -120,11 +124,11 @@ app.get("/viewURLs", (req, res) => {
             allURLs[url] = URLDatabase[user][url];
         }
     }
-    res.render("viewURLs", {urls: allURLs, user_id: req.cookies["user_id"]});
+    res.render("viewURLs", {urls: allURLs, user_id: req.session.user_id});
 })
 
 app.post("/logout", (req, res) => {
-    res.clearCookie("user_id");
+    req.session = null;
     res.redirect("/login");
 })
 
