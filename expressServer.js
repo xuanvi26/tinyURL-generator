@@ -21,13 +21,6 @@ const URLDatabase = {
     }
 };
 
-const allURLs = {};
-for (let user in URLDatabase) {
-    for (let url in URLDatabase[user]) {
-        allURLs[url] = URLDatabase[user][url];
-    }
-};
-
 const users = {
     userRandomID: {
         id: "userRandomID", 
@@ -35,6 +28,16 @@ const users = {
         password: "purple-monkey-dinosaur"
       }
 };
+
+const allURLs = (URLDatabase) => {
+    let allURLs = {};
+    for (let user in URLDatabase) {
+        for (let url in URLDatabase[user]) {
+            allURLs[url] = URLDatabase[user][url];
+        }
+    };
+    return allURLs;
+}
 
 const generateRandomString = () => {
     let uniqueSURL = "";
@@ -127,6 +130,12 @@ app.post("/:user/urls/:shortURL/delete", (req, res) => {
 });
 
 app.get("/viewURLs", (req, res) => {
+    let allURLs = allURLs(URLDatabase);
+    for (let user in URLDatabase) {
+        for (let url in URLDatabase[user]) {
+            allURLs[url] = URLDatabase[user][url];
+        }
+    };
     res.render("viewURLs", {urls: allURLs, user_id: req.session.user_id});
 });
 
@@ -136,6 +145,7 @@ app.post("/logout", (req, res) => {
 });
 
 app.get("/short/:shortURL", (req, res) => {
+    let allURLs = allURLs(URLDatabase);
     for (let shortURL in allURLs) {
         if (shortURL === req.params.shortURL) {
             res.redirect(allURLs[shortURL]);
