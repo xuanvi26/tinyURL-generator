@@ -19,6 +19,14 @@ const URLDatabase = {
         sup233: "www.lighthouse.com"
     }
 };
+
+const allURLs = {};
+for (let user in URLDatabase) {
+    for (let url in URLDatabase[user]) {
+        allURLs[url] = URLDatabase[user][url];
+    }
+};
+
 const users = {
     userRandomID: {
         id: "userRandomID", 
@@ -34,15 +42,15 @@ const generateRandomString = () => {
         uniqueSURL += possible.charAt(Math.floor(Math.random() * possible.length));
     }
     return uniqueSURL;
-}
+};
 
 const redirectLogin = (req, res) => {
     if (!req.session.user_id) res.redirect('/login');
-}
+};
 
 app.get("/", (req, res) => {
     res.redirect('/login')
-})
+});
 
 app.get("/login", (req, res) => {
     const templateVars = {
@@ -51,7 +59,7 @@ app.get("/login", (req, res) => {
         page: "login"
     }
     res.render("welcome", templateVars);
-})
+});
 
 app.post("/login", (req, res) => {
     let authorizedUser = {};
@@ -68,7 +76,7 @@ app.post("/login", (req, res) => {
     }
     req.session.user_id = authorizedUser.id;
     res.status(resParams.status).redirect(resParams.redirect); 
-})
+});
 
 app.get("/register", (req, res) => {
     const templateVars = {
@@ -77,7 +85,7 @@ app.get("/register", (req, res) => {
         page: "register"
     }
     res.render("welcome", templateVars);
-})
+});
 
 app.post("/register", (req, res) => {
     for (let userId in users) {
@@ -94,43 +102,46 @@ app.post("/register", (req, res) => {
     URLDatabase[newUserId] = {};
     req.session.user_id = newUserId;
     res.redirect(`/${newUserId}/new`);
-})
+});
 
 app.get("/:user/new", (req, res) => {
     redirectLogin(req, res);
     res.render("newURL", {user_id: req.session.user_id});
-})
+});
 
 app.post("/:user/new", (req, res) => {
     URLDatabase[req.params.user][generateRandomString()] = req.body.longURL;
     res.redirect(`/${req.params.user}/urls`);
-})
+});
 
 app.get("/:user/urls", (req, res) => {
     redirectLogin(req, res);
     let userURLs = URLDatabase[req.params.user];
     res.render("userURLs", {urls: userURLs, user_id: req.session.user_id})
-})
+});
 
 app.post("/:user/urls/:shortURL/delete", (req, res) => {
     delete URLDatabase[req.params.user][req.params.shortURL];
     res.redirect(`/${req.params.user}/urls`);
-})
+});
 
 app.get("/viewURLs", (req, res) => {
-    let allURLs = {};
-    for (let user in URLDatabase) {
-        for (let url in URLDatabase[user]) {
-            allURLs[url] = URLDatabase[user][url];
-        }
-    }
     res.render("viewURLs", {urls: allURLs, user_id: req.session.user_id});
-})
+});
 
 app.post("/logout", (req, res) => {
     req.session = null;
     res.redirect("/login");
-})
+});
+
+app.get("/short/:shortURL", (req, res) => {
+    for (let shortURL in allURLs) {
+        if (shortURL === req.params.shortURL) {
+            res.redirect(allURLs[shortURL]);
+            break;
+        }
+    }
+});
 
 app.listen(PORT, () => {
     console.log(`TinyURL Generator listening on port ${PORT}!`);

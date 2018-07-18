@@ -15,7 +15,7 @@
         </tr>
             <% for(let shortURL in urls) { %>
                 <tr>
-                    <td><%= shortURL %></td>
+                    <td><%= "localhost:8080/short/" + shortURL %></td>
                     <td><%= urls[shortURL] %></td>
                 </tr>
             <% } %>

@@ -14,7 +14,7 @@
         </tr>
         <% for(let shortURL in urls) { %>
             <tr>
-                <td><%= shortURL %></td>
+                <td><%= "localhost:8080/short/" + shortURL %></td>
                 <td style='display: flex;'><%= urls[shortURL] %>
                     <form style='margin-left: 10px' method="POST" action=<%= "/" + user_id + "/urls/" + shortURL + "/delete" %>>
                         <button type="submit" value="Delete"><i class="fas fa-trash-alt"></i></button>
