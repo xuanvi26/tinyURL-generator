@@ -137,7 +137,7 @@ app.post("/logout", (req, res) => {
 app.get("/short/:shortURL", (req, res) => {
     for (let shortURL in allURLs) {
         if (shortURL === req.params.shortURL) {
-            res.redirect(allURLs[shortURL]);
+            res.redirect("https://" + allURLs[shortURL]);
             break;
         }
     }
