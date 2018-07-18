@@ -6,6 +6,7 @@
 </head>
 <body>
     <%- include ./partials/_topbar.ejs %>
+    <p>Please make sure your link includes the protocol (http or https)</p>
     <form action=<%= "/" + user_id + "/new"%> method="POST">
       <label>Enter a URL:</label>
       <input type="text" name="longURL" placeholder="http://" style="width: 300px">
