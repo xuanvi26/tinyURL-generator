@@ -4,10 +4,11 @@ const PORT = 8080;
 const bodyParser = require("body-parser");
 const cookieSession = require('cookie-session');
 const bcrypt = require("bcrypt");
+require("dotenv").config();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieSession({
     name: "session",
-    keys: [10]
+    keys: [process.env.SECRET_KEY]
 }));
 app.set("view engine", "ejs");
 
