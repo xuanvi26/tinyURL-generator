@@ -13,20 +13,9 @@ app.use(cookieSession({
 app.set("view engine", "ejs");
 
 const URLDatabase = {
-    userRandomID1: {
-        Ex4mp3: "www.google.com"
-    },
-    userRandomID2: {
-        sup233: "www.lighthouse.com"
-    }
 };
 
 const users = {
-    userRandomID: {
-        id: "userRandomID", 
-        email: "user@example.com", 
-        password: "purple-monkey-dinosaur"
-      }
 };
 
 const allURLs = (URLDatabase) => {
