@@ -4,14 +4,14 @@
 <head> 
     <%- include ./partials/_header.ejs %>
 </head>
-<body>
+<body class='center'>
     <% if (user_id) { %>
         <%- include ./partials/_topbar.ejs %>
     <% } %>
-    <table style="width: 80%">
+    <table style="width: 80%" class='table table-dark'>
         <tr>
-            <th style="width:40%">Short URL</th>
-            <th style="width:40%">Long URL</th>
+            <th class='table-columns'>Short URL</th>
+            <th class='table-columns'>Long URL</th>
         </tr>
             <% for(let shortURL in urls) { %>
                 <tr>

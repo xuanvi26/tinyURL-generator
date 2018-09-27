@@ -26,7 +26,7 @@
   }
 
   .content {
-    width: 600px;
+    min-width: 638px;
   }
   
   .heading {
@@ -52,4 +52,10 @@
     font-weight: 100;
     font-style: italic;
     font-size: 0.9em;
+  }
+
+  .table-columns {
+    width: 50%; 
+    text-align: center;
+    font-size: 1.2em;
   }
