@@ -1,0 +1,55 @@
+* {
+    font-family: 'Nanum gothic', sans-serif;
+    color: whitesmoke;
+  }
+  
+  html {
+    height: 100%;
+    width: 100%;
+  }
+  
+  body {
+    height: 100%;
+    width: 100%;
+    background-image: url('http://www.baltana.com/files/wallpapers-5/Gradient-Background-HD-Wallpaper-16352.jpg');
+    color: rgb(167, 167, 167);
+    background-color: black;
+  }
+  
+  .center {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .content {
+    width: 600px;
+  }
+  
+  .heading {
+    font-weight: 200;
+    color: whitesmoke;
+    margin: 0;
+    font-size: 3em;
+  }
+/*   
+  .heading-2 {
+    font-size: 2em;
+    margin: 0;
+    font-weight: 200;
+  }
+   */
+  .heading-3 {
+    font-weight: 100;
+    font-size: 1em;
+  }
+  
+  .subtitle {
+    color: whitesmoke;
+    font-weight: 100;
+    font-style: italic;
+    font-size: 0.9em;
+  }

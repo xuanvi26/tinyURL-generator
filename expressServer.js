@@ -11,14 +11,14 @@ app.use(cookieSession({
     keys: [process.env.SECRET_KEY]
 }));
 app.set("view engine", "ejs");
-
+app.use(express.static('public'))
 const URLDatabase = {
 };
 
 const users = {
 };
 
-const allURLs = (URLDatabase) => {
+const allURL = (URLDatabase) => {
     let allURLs = {};
     for (let user in URLDatabase) {
         for (let url in URLDatabase[user]) {
@@ -119,7 +119,7 @@ app.post("/:user/urls/:shortURL/delete", (req, res) => {
 });
 
 app.get("/viewURLs", (req, res) => {
-    let allURLs = allURLs(URLDatabase);
+    let allURLs = allURL(URLDatabase);
     for (let user in URLDatabase) {
         for (let url in URLDatabase[user]) {
             allURLs[url] = URLDatabase[user][url];

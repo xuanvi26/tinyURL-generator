@@ -4,28 +4,38 @@
 <head>
     <%- include ./partials/_header.ejs %>
 </head>
-<body style='background-image: url(https://i.pinimg.com/originals/3e/c3/ac/3ec3ac83df9423573b91766c18bda500.jpg); background-size: cover; color: white'>
-    <h1>Hello.</h1>
-    <h2>Welcome to TinyURL Generator,</h2>
-    <p>
+<body class='center'>
+    <h1 class='heading'>Welcome to TinyURL Generator,</h1>
+    <p class='heading-3'>
         where you can shorten those unwanted long URLs as well as edit,<br/>
         manage and share your newly generated short URLs. Simply enter<br/>
         a URL and at the touch of a button, – literally - create a tiny URL<br/>
         that will never expire! You can also view the list of URLs by clicking<br/>
         the link at the bottom right of this page.
     </p>
-    <br/>
     <div>
-        <%= sentence %>
-        <div style='display: inline-block'>
-            <a href=<%= "/" + redirect %>><%= redirect + " here" %></a>.
+        <div style='margin-bottom: 10px'>
+            <%= sentence %><a href=<%= "/" + redirect %>><%= redirect + " here" %></a>.
+        </div>
+        <div class='content'>
+            <form method="POST" action=<%="/" + page %>>
+                <div class="form-group">
+                  <label class='subtitle' for="exampleInputEmail1">Email address</label>
+                  <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your email">
+                </div>
+                <div style='margin-top: -7px' class="form-group">
+                  <label class='subtitle' for="exampleInputPassword1">Password</label>
+                  <input type="password" name='password' class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <button type="submit" value=<%= page %> class="btn btn-primary">Submit</button>
+              </form>
         </div>
     </div>
-    <form method="POST" action=<%="/" + page %>>
-        <input type="email" name="email" placeholder="Your email" style="width: 250px"/>
-        <input type="password" name="password" placeholder="Your password" style="width: 250px"/>
-        <input type="submit" value=<%= page %> />
-    </form>
+
+
+
+
     <%- include ./partials/_bottombar.ejs %>
 </body>
 </html>
+
