@@ -35,13 +35,7 @@
     margin: 0;
     font-size: 3em;
   }
-/*   
-  .heading-2 {
-    font-size: 2em;
-    margin: 0;
-    font-weight: 200;
-  }
-   */
+
   .heading-3 {
     font-weight: 100;
     font-size: 1em;
@@ -58,4 +52,8 @@
     width: 50%; 
     text-align: center;
     font-size: 1.2em;
+  }
+
+  .remove-space {
+    margin-bottom:-100px;
   }

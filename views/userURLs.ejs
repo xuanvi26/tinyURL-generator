@@ -4,22 +4,23 @@
 <head>
     <%- include ./partials/_header.ejs %>
 </head>
-<body>
+<body class='center'>
     <%- include ./partials/_topbar.ejs %>
-    <div>
+    <h1 class='heading remove-space'>View your URLs</h1>
+    <div class='remove-space'>
         Generate a new short URL <a href=<%= "/" + user_id + "/new" %>>here</a>.
     </div>
-    <table style="width: 80%">
+    <table style="width: 80%" class='table table-dark'>
         <tr>
-            <th style="width:40%">Short URL</th>
-            <th style="width:40%">Long URL</th>
+            <th class='table-columns'>Short URL</th>
+            <th class='table-columns'>Long URL</th>
         </tr>
         <% for(let shortURL in urls) { %>
             <tr>
                 <td><%= "localhost:8080/short/" + shortURL %></td>
                 <td style='display: flex;'><%= urls[shortURL] %>
                     <form style='margin-left: 10px' method="POST" action=<%= "/" + user_id + "/urls/" + shortURL + "/delete" %>>
-                        <button type="submit" value="Delete"><i class="fas fa-trash-alt"></i></button>
+                        <button type="submit" value="Delete" class='btn btn-danger btn-sm'>Delete</button>
                     </form>
                 </td>
             </tr>
