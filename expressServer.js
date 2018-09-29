@@ -134,7 +134,7 @@ app.post("/logout", (req, res) => {
 });
 
 app.get("/short/:shortURL", (req, res) => {
-    let allURLs = allURLs(URLDatabase);
+    let allURLs = allURL(URLDatabase);
     for (let shortURL in allURLs) {
         if (shortURL === req.params.shortURL) {
             res.redirect(allURLs[shortURL]);
