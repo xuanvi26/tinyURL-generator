@@ -3,8 +3,7 @@
 * A web application built with Node and Express that allows users to generate shortened URLs. 
 * User
 
-## Screenshots
-### Final product
+## Final product
 
 ## Dependencies
 
