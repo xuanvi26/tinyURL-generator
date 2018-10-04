@@ -1,6 +1,6 @@
 # tinyURL Project
 
-* A web application built with Node and Express that allows users to generate shortened URLs. 
+* A URL shortener built with Node.js and Express.
 * Users can register, log-in, manage their URLs and view all users' URLs.
 
 ## Screenshots
