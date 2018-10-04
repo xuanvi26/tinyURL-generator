@@ -3,7 +3,11 @@
 * A web application built with Node and Express that allows users to generate shortened URLs. 
 * Users can register, log-in, manage their URLs and view all users' URLs.
 
-## Final product
+## Screenshots
+![Login](https://imgur.com/vfOnl1z.png)
+![Generate](https://imgur.com/ewPbEbw.png)
+![View own](https://imgur.com/U59n5zP.png)
+![View all](https://imgur.com/4j7cs96.png)
 
 ## Dependencies
 
