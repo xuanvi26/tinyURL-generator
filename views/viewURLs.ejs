@@ -8,18 +8,20 @@
     <% if (user_id) { %>
         <%- include ./partials/_topbar.ejs %>
     <% } %>
-    <h1 class='heading remove-space'>View all users' URLs</h1>
-    <table style="width: 80%" class='table table-dark'>
-        <tr>
-            <th class='table-columns'>Short URL</th>
-            <th class='table-columns'>Long URL</th>
-        </tr>
-            <% for(let shortURL in urls) { %>
-                <tr>
-                    <td><%= "localhost:8080/short/" + shortURL %></td>
-                    <td><%= urls[shortURL] %></td>
-                </tr>
-            <% } %>
-    </table>
+    <h1 class='heading-1 remove-space'>View all users' URLs</h1>
+    <div class='list'>
+        <table class='table table-dark'>
+            <tr>
+                <th class='table-columns'>Short URL</th>
+                <th class='table-columns'>Long URL</th>
+            </tr>
+                <% for(let shortURL in urls) { %>
+                    <tr>
+                        <td><%= "localhost:8080/short/" + shortURL %></td>
+                        <td><%= urls[shortURL] %></td>
+                    </tr>
+                <% } %>
+        </table>
+    </div>
 </body>
 </html>

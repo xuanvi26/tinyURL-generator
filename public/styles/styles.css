@@ -1,0 +1,124 @@
+* {
+  font-family: "Nanum gothic", sans-serif;
+  color: whitesmoke;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(235, 204, 82),
+    rgb(16, 65, 71, 0.6)
+  );
+  color: rgb(167, 167, 167);
+}
+
+.center {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.content {
+  min-width: 638px;
+}
+
+.heading-1 {
+  font-weight: 200;
+  color: whitesmoke;
+  margin: 0;
+  font-size: 3em;
+}
+
+.heading-3 {
+  font-weight: 100;
+  font-size: 1em;
+}
+
+.note {
+  margin-bottom: 10px; 
+  text-align: center
+}
+
+.subtitle {
+  color: whitesmoke;
+  font-weight: 100;
+  font-style: italic;
+  font-size: 0.9em;
+}
+
+.list {
+  width: 80%;
+}
+
+.table-columns {
+  width: 50%;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.form-name {
+  width: 100px;
+}
+
+.display-in-line {
+  display: flex;
+}
+
+.display-in-line.header-content {
+  flex-direction: row; 
+  justify-content: space-between; 
+  padding: 0 15px;
+}
+
+.header-container i {
+  margin-top: 8px;
+}
+
+.header-container input {
+  margin-top: 4px;
+}
+
+.small-left-margin {
+  margin-left: 10px;
+}
+
+.remove-space {
+  margin-bottom: -100px;
+}
+
+.bar {
+  position: absolute; 
+  background-color: rgb(49, 49, 49); 
+  width: 100%; 
+  height: 40px;
+}
+
+.bar.header-container {
+  top: 0px;
+}
+
+.bar.footer-container {
+  bottom: 0px; 
+}
+
+.footer-content {
+  position: relative;
+  text-align: right; 
+  padding: 8px 15px;
+}
+
+.footer-link {
+  color:whitesmoke; 
+}
+
+

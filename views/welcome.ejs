@@ -5,7 +5,7 @@
     <%- include ./partials/_header.ejs %>
 </head>
 <body class='center'>
-    <h1 class='heading'>Welcome to TinyURL Generator,</h1>
+    <h1 class='heading-1'>Welcome to TinyURL Generator,</h1>
     <p class='heading-3'>
         where you can shorten those unwanted long URLs as well as edit,<br/>
         manage and share your newly generated short URLs. Simply enter<br/>
@@ -14,7 +14,7 @@
         the link at the bottom right of this page.
     </p>
     <div>
-        <div style='margin-bottom: 10px; text-align: center'>
+        <div class='note'>
             <%= sentence %><a href=<%= "/" + redirect %>><%= redirect + " here" %></a>.
         </div>
         <div class='content'>
@@ -23,7 +23,7 @@
                   <label class='subtitle' for="exampleInputEmail1">Email address</label>
                   <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your email">
                 </div>
-                <div style='margin-top: -7px' class="form-group">
+                <div class="form-group">
                   <label class='subtitle' for="exampleInputPassword1">Password</label>
                   <input type="password" name='password' class="form-control" id="exampleInputPassword1" placeholder="Password">
                 </div>
