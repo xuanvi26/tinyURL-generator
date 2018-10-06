@@ -11,7 +11,7 @@
   body {
     height: 100%;
     width: 100%;
-    background-image: url('http://www.baltana.com/files/wallpapers-5/Gradient-Background-HD-Wallpaper-16352.jpg');
+    background-image: linear-gradient(to bottom right, rgb(235, 204, 82), rgb(16, 65, 71, 0.6));
     color: rgb(167, 167, 167);
     background-color: black;
   }
