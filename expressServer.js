@@ -11,7 +11,7 @@ app.use(cookieSession({
     keys: [process.env.SECRET_KEY]
 }));
 app.set("view engine", "ejs");
-app.use(express.static('public'))
+app.use(express.static('public'));
 const URLDatabase = {
 };
 

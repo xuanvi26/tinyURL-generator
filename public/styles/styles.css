@@ -118,7 +118,11 @@ body {
 }
 
 .footer-link {
-  color:whitesmoke; 
+  color: whitesmoke; 
 }
+
+.anchor-white {
+  color: whitesmoke;
+};
 
 
