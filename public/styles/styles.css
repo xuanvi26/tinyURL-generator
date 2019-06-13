@@ -80,6 +80,10 @@ body {
   padding: 0 15px;
 }
 
+.justify-left {
+  justify-content: left;
+}
+
 .header-container i {
   margin-top: 8px;
 }
@@ -123,6 +127,5 @@ body {
 
 .anchor-white {
   color: whitesmoke;
-};
-
+}
 

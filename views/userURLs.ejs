@@ -15,16 +15,20 @@
             <tr>
                 <th class='table-columns'>Short URL</th>
                 <th class='table-columns'>Long URL</th>
+                <th class='table-columns'>Delete/Edit</th>
             </tr>
             <% for(let shortURL in urls) { %>
-                <tr>
+                <tr> 
                     <td><%= "localhost:8080/short/" + shortURL %></td>
-                    <td class='display-in-line'><%= urls[shortURL] %>
+                    <td>
+                        <%= urls[shortURL] %>
+                    </td>
+                    <td class='display-in-line'>
                         <form class='small-left-margin' method="POST" action=<%= "/" + user_id + "/urls/" + shortURL + "/delete" %>>
                             <button type="submit" value="Delete" class='btn btn-danger btn-sm'>Delete</button>
                         </form>
                         <button type="submit" value="Edit" class='small-left-margin btn btn-primary btn-sm'>
-                            <a href=<%= "/" + user_id + "/" + shortURL + "/edit" %> class='anchor-white'>Edit</a>
+                            <a href=<%= "/" + user_id + "/" + shortURL + "/edit" %> class='anchor-white anchor-white:hover'>Edit</a>
                         </button>
                     </td>
                 </tr>
