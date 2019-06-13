@@ -7,7 +7,7 @@
 <body class='center'>
     <%- include ./partials/_topbar.ejs %>
     <h1 class='heading-1 remove-space'>Edit a shortURL</h1>
-    <form class="form-inline" action=<%= "/" + user_id + "/" + shortURL + "?method=PUT"%> method="POST">
+    <form class="form-inline" action=<%= "/" + user_id + "/urls/" + shortURL + "?_method=PUT"%> method="POST">
         <div class='form-name'>
             <div class="form-group mb-2">
                 <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="ShortURL:" style='color:whitesmoke'>
