@@ -24,7 +24,7 @@
                         <%= urls[shortURL] %>
                     </td>
                     <td class='display-in-line'>
-                        <form class='small-left-margin' method="POST" action=<%= "/" + user_id + "/urls/" + shortURL + "/delete" %>>
+                        <form class='small-left-margin' method="POST" action=<%= "/" + user_id + "/urls/" + shortURL + "?_method=DELETE" %>>
                             <button type="submit" value="Delete" class='btn btn-danger btn-sm'>Delete</button>
                         </form>
                         <button type="submit" value="Edit" class='small-left-margin btn btn-primary btn-sm'>
