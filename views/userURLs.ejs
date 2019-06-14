@@ -15,6 +15,7 @@
             <tr>
                 <th class='table-columns'>Short URL</th>
                 <th class='table-columns'>Long URL</th>
+                <th class='table-columns'>Unique Visits</th>
                 <th class='table-columns'>Visits</th>
                 <th class='table-columns'>Delete/Edit</th>
             </tr>
@@ -25,7 +26,10 @@
                         <%= urls[shortURL] %>
                     </td>
                     <td>
-                        <%= analytics[shortURL] || 0 %>
+                        <%= analytics[shortURL].uniqueVisits %>
+                    </td>
+                    <td>
+                        <%= analytics[shortURL].visits %>
                     </td>
                     <td class='display-in-line'>
                         <form class='small-left-margin' method="POST" action=<%= "/" + user_id + "/urls/" + shortURL + "?_method=DELETE" %>>
